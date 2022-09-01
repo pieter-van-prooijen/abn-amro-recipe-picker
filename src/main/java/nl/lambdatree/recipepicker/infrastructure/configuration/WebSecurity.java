@@ -28,9 +28,7 @@ public class WebSecurity {
       http.sessionManagement()
           .sessionCreationPolicy(SessionCreationPolicy.NEVER).disable()
           .csrf().disable()
-          .authorizeRequests(r -> r.antMatchers("/swagger-ui.html").permitAll()
-                                   .antMatchers("/actuator").permitAll()
-                                   .antMatchers("/v1/**").hasRole("USER"))
+          .authorizeRequests(r -> r.antMatchers("/v1/**").hasRole("USER"))
           .httpBasic(Customizer.withDefaults());
 
       return http.build();
