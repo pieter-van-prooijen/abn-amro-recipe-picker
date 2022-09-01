@@ -1,0 +1,28 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  # For production, replace the in-memory embedded database with a connection to a database server.
+  # Username and password should be supplied via some external secure configuration mechanism, like
+  # Kubernetes secrets or Hashicorp's Vault.
+  datasource:
+    url: jdbc:h2:mem:non-prod-db
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+recipe-picker:
+  base-url: http://localhost:${server.port}
+  # Basic Authentication security for the API
+  #
+  # For production, inject these credentials via an external mechanism:
+  # Examples are the process environment (for instance using Kubernetes secrets)
+  # or an integration with a service like Hashicorp Vault.
+  # Ideally, the password should be encoded externally as well, so it's plain text is not stored in the heap.
+  user: abn
+  password: secret
+
+logging:
+  level:
+    org.springframework.security: INFO
